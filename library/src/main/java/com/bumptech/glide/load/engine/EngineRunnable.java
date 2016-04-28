@@ -3,6 +3,7 @@ package com.bumptech.glide.load.engine;
 import android.util.Log;
 
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.exceptions.ErrorWrappingGlideException;
 import com.bumptech.glide.load.engine.executor.Prioritized;
 import com.bumptech.glide.request.ResourceCallback;
 
@@ -60,7 +61,7 @@ class EngineRunnable implements Runnable, Prioritized {
             if (Log.isLoggable(TAG, Log.VERBOSE)) {
                 Log.v(TAG, "Out Of Memory Error decoding", e);
             }
-            exception = new RuntimeException(e);
+            exception = new ErrorWrappingGlideException(e);
         } catch (Exception e) {
             if (Log.isLoggable(TAG, Log.VERBOSE)) {
                 Log.v(TAG, "Exception decoding", e);

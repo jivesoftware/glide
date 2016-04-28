@@ -10,6 +10,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.exceptions.ErrorWrappingGlideException;
 import com.bumptech.glide.request.ResourceCallback;
 
 import org.junit.Before;
@@ -237,6 +238,6 @@ public class EngineRunnableTest {
         when(job.decodeFromSource()).thenThrow(expected);
         runnable.run();
 
-        verify(manager).onException(any(RuntimeException.class));
+        verify(manager).onException(any(ErrorWrappingGlideException.class));
     }
 }
